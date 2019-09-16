@@ -38,23 +38,9 @@ vet:
 	@echo "-> $@"
 	@env go vet ./internal/... ./pkg/...
 
-octant-dev:
-	@mkdir -p ./build
-	@env $(GOBUILD) -o build/octant $(GO_FLAGS) -v ./cmd/octant
-
-octant-docker:
-	@env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o /octant $(GO_FLAGS) -v ./cmd/octant
-
 generate:
 	@echo "-> $@"
 	@go generate -v ./pkg/... ./internal/...
-
-go-install:
-	@env GO111MODULE=on $(GOINSTALL) github.com/GeertJohan/go.rice
-	@env GO111MODULE=on $(GOINSTALL) github.com/GeertJohan/go.rice/rice
-	@env GO111MODULE=on $(GOINSTALL) github.com/golang/mock/gomock
-	@env GO111MODULE=on $(GOINSTALL) github.com/golang/mock/mockgen
-	@env GO111MODULE=on $(GOINSTALL) github.com/golang/protobuf/protoc-gen-go
 
 # Remove all generated go files
 .PHONY: clean
@@ -77,25 +63,6 @@ clean:
 	@rm -rf ./pkg/plugin/service/fake
 	@rm ./pkg/icon/rice-box.go
 
-web-deps:
-	@cd web; npm ci
-
-web-build: web-deps
-	@cd web; npm run build
-	@go generate ./web
-
-web-test: web-deps
-	@cd web; npm run test:headless
-
-ui-server:
-	OCTANT_DISABLE_OPEN_BROWSER=1 OCTANT_LISTENER_ADDR=localhost:7777 $(GOCMD) run ./cmd/octant/main.go $(OCTANT_FLAGS)
-
-ui-client:
-	@cd web; API_BASE=http://localhost:7777 npm run start
-
-gen-electron:
-	@GOCACHE=${HOME}/cache/go-build astilectron-bundler -v -c configs/electron/bundler.json
-
 .PHONY: changelogs
 changelogs:
 	hacks/changelogs.sh
@@ -106,13 +73,7 @@ release:
 	git push --follow-tags
 
 .PHONY: ci
-ci: test vet web-test web-build octant-dev
-
-.PHONY: ci-quick
-ci-quick:
-	@cd web; npm run build
-	@go generate ./web
-	make octant-dev
+ci: test vet
 
 install-test-plugin:
 	@echo $(OCTANT_PLUGINSTUB_DIR)
