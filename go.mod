@@ -19,7 +19,7 @@ require (
 	github.com/spf13/afero v1.2.1
 	github.com/spf13/cobra v0.0.3
 	github.com/stretchr/testify v1.3.0
-	github.com/vmware/octant v0.6.0
+	github.com/vmware/octant v0.6.1-0.20190917160043-1fb8cbfb4093
 	go.opencensus.io v0.19.1
 	go.uber.org/zap v1.9.1
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
