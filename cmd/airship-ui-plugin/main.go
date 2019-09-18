@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-    "github.com/vmware/octant/internal/plugin"
+    "github.com/airship-ui/internal/plugin"
 )
 
 var pluginName = "plugin-name"
