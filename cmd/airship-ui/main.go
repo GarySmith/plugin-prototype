@@ -2,7 +2,7 @@ package main
 
 import (
     "log"
-    "airship-ui/internal"
+    "airship-ui/internal/plugin"
 )
 
 var pluginName = "airship-ui"
@@ -13,7 +13,7 @@ func main() {
     log.SetPrefix("")
 
     // Use the plugin service helper to register this plugin.
-    p, err := internal.Register(pluginName, "Airship UI")
+    p, err := plugin.Register(pluginName, "Airship UI")
     if err != nil {
         log.Fatal(err)
     }
