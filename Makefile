@@ -23,7 +23,7 @@ RECURSIVE_DIRS = $(addsuffix /...,$(DIRS))
 .PHONY: plugin
 plugin:
 	mkdir -p $(OCTANT_PLUGINSTUB_DIR)
-	go build -o $(OCTANT_PLUGINSTUB_DIR)/airship-ui-plugin github.com/airship-ui/cmd/airship-ui-plugin
+	go build -o $(OCTANT_PLUGINSTUB_DIR)/airship-ui-plugin ./cmd/airship-ui
 
 .PHONY: test
 test: generate
