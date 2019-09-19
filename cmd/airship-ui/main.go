@@ -19,6 +19,6 @@ func main() {
     }
 
     // The plugin can log and the log messages will show up in Octant.
-    log.Printf("octant-sample-plugin is starting")
+    log.Printf("%s is starting", pluginName)
     p.Serve()
 }
