@@ -1,4 +1,4 @@
-module airship-ui
+module opendev.org/airship/airshipui
 
 go 1.12
 
@@ -8,5 +8,3 @@ require (
 	github.com/vmware/octant v0.7.0
 	k8s.io/apimachinery v0.0.0-20190612205821-1799e75a0719
 )
-
-// replace airship-ui => ../airship-ui
