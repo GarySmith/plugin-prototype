@@ -13,7 +13,7 @@ func main() {
     log.SetPrefix("")
 
     // Use the plugin service helper to register this plugin.
-    p, err := plug.Register(pluginName, "Airship UI")
+    p, err := internal.Register(pluginName, "Airship UI")
     if err != nil {
         log.Fatal(err)
     }
