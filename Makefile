@@ -42,9 +42,5 @@ generate:
 clean:
 	git clean -dx $(DIRS)
 
-.PHONY: changelogs
-changelogs:
-	hacks/changelogs.sh
-
 .PHONY: ci
 ci: test vet
